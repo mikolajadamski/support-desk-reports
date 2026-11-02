@@ -4,7 +4,7 @@ title: '#4471 split · three problems, one ticket each'
 owner: Mikołaj Adamski
 status: open
 reviewed: 2026-11-02
-signature: Mikołaj Adamski
+signature: v1.eyJzdWIiOiIxNjYzIiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM2NTI2NTYsImV4cCI6MTc5MzczOTA1Nn0.lLEhL4odPygwphXmhQj7q72YA9MsTDKcqTCW_hUdYHM
 ---
 
 <script>
