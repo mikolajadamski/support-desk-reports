@@ -14,12 +14,15 @@ signature: Mikołaj Adamski
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 </script>
 
-[#4471](/kb/incidents/4471) is marked known: one issue, one fix queued. Its own table already
-disagrees. Read by what each report describes, #4471 holds three problems. A parser fix closes
-only one of them.
+[#4471](/kb/incidents/4471) was marked known: one issue, one fix queued. Its own table already
+disagreed. Read by what each report describes, #4471 holds three problems.
+
+Engineering closed #4471 on 5 October: the parser is fixed, and the booking-v3 form is retired
+instead of fixed. Nothing in that update touches the third problem.
 
 <Callout kind="warn">
-Do not close the reports in #4471 when the parser fix ships. Two of the problems below survive it.
+#4471 is closed, but one of its problems is still open: dates that move by one day (#3).
+Keep sending "one day off" reports there.
 </Callout>
 
 ## What #4471 holds
@@ -27,9 +30,9 @@ Do not close the reports in #4471 when the parser fix ships. Two of the problems
 <ProblemTable
   ticket={4471}
   tickets={{
-    parser: 'https://github.com/mikolajadamski/support-desk-reports/issues/1',
-    hint: 'https://github.com/mikolajadamski/support-desk-reports/issues/2',
-    'one-day': 'https://github.com/mikolajadamski/support-desk-reports/issues/3',
+    parser: { url: 'https://github.com/mikolajadamski/support-desk-reports/issues/1', state: 'fixed' },
+    hint: { url: 'https://github.com/mikolajadamski/support-desk-reports/issues/2', state: "won't fix" },
+    'one-day': { url: 'https://github.com/mikolajadamski/support-desk-reports/issues/3', state: 'open' },
   }}
 />
 
@@ -41,17 +44,18 @@ report per id, counted the way the desk counts: by tenant, so the one-day moves 
 
 **`parser`: the shared parser reads dates month first.** Every tenant on file writes the day
 first, so any date with both numbers at 12 or less flips: 7 April becomes 4 July. This is what
-#4471 says it is.
+#4471 says it is. Fixed: `fix(dates): parse dd/mm for eu locales`.
 
 **`hint`: the booking-v3 form asks for the wrong order.** The form prints `MM/DD/YYYY` under its
 date field. People type what it asks, and the form reads the date day first. The dates flip
 before they reach the parser. Only booking-v3 tenants, and only reports sent through the form.
-The parser fix does not touch this.
+The parser fix does not touch this. Won't fix: the booking-v3 form is retired.
 
 **`one-day`: dates move by one day.** These are not flips: 12 May shows as 11 May, Lisbon and
 Toronto get different days for one meeting, an invite arrives before its booking. The desk
 listed them in `desk-notes.json` and counts them under the parser by tenant; they need their own fix. They look
 like a time zone bug. One reporter says they stopped reporting it, so this count is a floor.
+Still open: neither the parser fix nor retiring the form explains a one-day move.
 
 ## Why it was one ticket
 
@@ -67,7 +71,8 @@ like a time zone bug. One reporter says they stopped reporting it, so this count
 ## For the desk
 
 - Count a merged ticket by what its reports describe, not by its subject or intake tag.
-- Keep #4471 for the parser. Send new booking-v3 form reports to the `hint` ticket, and any
-  "one day off" report to the `one-day` ticket.
+- Closing a merged ticket closes every problem in it. Check each problem against the fix before
+  you close.
+- Send any "one day off" report to the `one-day` ticket (#3). It is the one still open.
 
 <RenderStamp {signature} />
