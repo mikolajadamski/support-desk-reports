@@ -34,7 +34,8 @@ Do not close the reports in #4471 when the parser fix ships. Two of the problems
 />
 
 The export comes in overlapping pages, so some reports appear twice. Every count here is one
-report per id.
+report per id, counted the way the desk counts: by tenant, so the one-day moves stay in the
+`parser` count where the desk filed them, and have their own row too.
 
 ## The three problems
 
@@ -49,7 +50,7 @@ The parser fix does not touch this.
 
 **`one-day`: dates move by one day.** These are not flips: 12 May shows as 11 May, Lisbon and
 Toronto get different days for one meeting, an invite arrives before its booking. The desk
-listed them in `desk-notes.json` and then counted them under the parser by tenant. They look
+listed them in `desk-notes.json` and counts them under the parser by tenant; they need their own fix. They look
 like a time zone bug. One reporter says they stopped reporting it, so this count is a floor.
 
 ## Why it was one ticket

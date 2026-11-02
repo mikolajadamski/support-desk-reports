@@ -44,9 +44,15 @@
   </tbody>
 </table>
 
+{#each groups as g (g.problem)}
+  {#each Object.entries(g.filedUnder) as [under, n] (under)}
+    <p class="note"><code>{g.problem}</code>: {n} {n === 1 ? 'report' : 'reports'} also counted under <code>{under}</code>, where the desk files them by tenant.</p>
+  {/each}
+{/each}
+
 <style>
   .sum { font-size: 1.1rem; }
-  .small { color: var(--muted); font-size: 0.85em; }
+  .small, .note { color: var(--muted); font-size: 0.85em; }
   .open td { background: var(--warn-bg); }
   .open td:last-child { color: var(--warn); font-weight: 600; }
 </style>
