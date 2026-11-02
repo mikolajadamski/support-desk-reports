@@ -4,7 +4,9 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "render": "vite build && node scripts/render.mjs",
+    "check": "npm run render && node scripts/check-pages.mjs && node scripts/check-counts.mjs"
   },
   "imports": {
     "#lib/*": "./src/lib/*"

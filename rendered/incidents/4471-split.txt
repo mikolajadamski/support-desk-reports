@@ -1,0 +1,50 @@
+#4471 split · three problems, one ticket each · support kb 
+support desk · kb #4471 split · three problems, one ticket each
+owner Mikołaj Adamski open reviewed 2026-11-02 · 0 days ago 
+#4471 was marked known: one issue, one fix queued. Its own table already
+disagreed. Read by what each report describes, #4471 holds three problems.
+Engineering closed #4471 on 5 October: the parser is fixed, and the booking-v3 form is retired
+instead of fixed. Nothing in that update touches the third problem.
+#4471 is closed, but one of its problems is still open: dates that move by one day (#3).
+Keep sending "one day off" reports there. 
+What #4471 holds
+427 rows in the export · 412 unique reports merged into #4471 · 3 problems
+problem reports channels tenants seen ticket state 
+parser 379 app ×204 · email ×150 · form ×25 11 2026-04-01 → 2026-10-04 #1 fixed 
+hint 33 form ×33 3 2026-04-17 → 2026-09-22 #2 won't fix 
+one-day 5 email ×3 · app ×2 5 2026-04-02 → 2026-10-04 #3 open 
+one-day : 5 reports also counted under parser , where the desk files them by tenant.
+The export comes in overlapping pages, so some reports appear twice. Every count here is one
+report per id, counted the way the desk counts: by tenant, so the one-day moves stay in the parser count where the desk filed them, and have their own row too.
+The three problems
+parser : the shared parser reads dates month first. Every tenant on file writes the day
+first, so any date with both numbers at 12 or less flips: 7 April becomes 4 July. This is what
+#4471 says it is. Fixed: fix(dates): parse dd/mm for eu locales .
+hint : the booking-v3 form asks for the wrong order. The form prints MM/DD/YYYY under its
+date field. People type what it asks, and the form reads the date day first. The dates flip
+before they reach the parser. Only booking-v3 tenants, and only reports sent through the form.
+The parser fix does not touch this. Won’t fix: the booking-v3 form is retired.
+one-day : dates move by one day. These are not flips: 12 May shows as 11 May, Lisbon and
+Toronto get different days for one meeting, an invite arrives before its booking. The desk
+listed them in desk-notes.json and counts them under the parser by tenant; they need their own fix. They look
+like a time zone bug. One reporter says they stopped reporting it, so this count is a floor.
+Still open: neither the parser fix nor retiring the form explains a one-day move.
+Why it was one ticket
+Intake tags a report from the reporter’s browser. The cause depends on the tenant: where they
+are and which booking form they run. The tags disagree with the cause on dozens of reports.
+Decision 0001 merges on subject line. Every subject in
+#4471 is some form of “wrong date”, so subject cannot tell these problems apart.
+The #4471 table below shows the hint row as “no ticket of its own” and footnotes the
+one-day moves. Both were visible on the page; neither got a ticket.
+412 reports merged into #4471 · 2 causes
+cause reports tagged as tenants seen 
+parser 379 parser ×356 · hint ×23 11 2026-04-01 → 2026-10-04 #4471 
+hint 33 hint ×18 · parser ×15 3 2026-04-17 → 2026-09-22 not this ticket — no ticket of its own 
+5 reports read as a one-day move; filed under parser by tenant.
+For the desk
+Count a merged ticket by what its reports describe, not by its subject or intake tag.
+Closing a merged ticket closes every problem in it. Check each problem against the fix before
+you close.
+Send any “one day off” report to the one-day ticket (#3). It is the one still open.
+desk ref DR-TN0D-3V2G 
+Pages are written by people. Tables and charts are built from data at render time.

@@ -1,0 +1,20 @@
+#4471 · dates parse mm/dd in eu locales · support kb 
+support desk · kb #4471 · dates parse mm/dd in eu locales
+owner support desk known reviewed 2026-09-30 · 33 days ago 
+Since April, people have told us their bookings land on the wrong day: a month flipped. By
+4 October the desk had 412 reports .
+Merged as one issue. The parser reads dates month first, and our tenants write the day
+first. The fix is queued.
+Known. One issue, one fix queued. 
+What was merged
+412 reports merged into #4471 · 2 causes
+cause reports tagged as tenants seen 
+parser 379 parser ×356 · hint ×23 11 2026-04-01 → 2026-10-04 #4471 
+hint 33 hint ×18 · parser ×15 3 2026-04-17 → 2026-09-22 not this ticket — no ticket of its own 
+5 reports read as a one-day move; filed under parser by tenant.
+Since April
+03-30 04-27 05-25 06-22 07-20 08-17 09-14 received · merged into #4471 · per week
+Lessons
+A big ticket is mostly one bug reported many times. Merge early, count once.
+Write the page while the queue is still in your head.
+Pages are written by people. Tables and charts are built from data at render time.
